@@ -5,7 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public Vector3 targetPosition; // 回來的目標位置
-    public float returnSpeed = 5f; // 回來的速度
+    public float returnSpeed = 1f; // 回來的速度
     private bool isReturning = false;
 
     void Start()
