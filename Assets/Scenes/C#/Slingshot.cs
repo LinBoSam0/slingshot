@@ -73,4 +73,18 @@ public class Slingshot : MonoBehaviour
         Vector3 launchDirection = slingshotOrigin.position - transform.position;
         rb.AddForce(launchDirection * launchForce);
     }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(1); // ¦© 1 ÂI¦å
+            }
+
+          
+        }
+    }
+
 }
