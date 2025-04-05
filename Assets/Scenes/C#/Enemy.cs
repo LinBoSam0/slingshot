@@ -9,6 +9,16 @@ public class Enemy : MonoBehaviour
     public int maxHealth = 3; // 最大生命值
     public Text healthText;   // 用來顯示血量的 Text UI 元素
 
+    void Start()
+    {
+        // 初始化血量顯示
+        if (healthText != null)
+        {
+            healthText.text = "敵人血量: " + health + "/" + maxHealth;
+        }
+        // 通知 GameManager 有新敵人生成
+        GameManager.Instance.RegisterEnemy();
+    }
     // 當敵人受到攻擊時，執行這個函式
     public void TakeDamage(int damage)
     {
@@ -30,15 +40,8 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         Debug.Log("敵人被消滅！");
-        Destroy(gameObject); // 摧毀敵人
-    }
+        Destroy(gameObject);
 
-    void Start()
-    {
-        // 初始化血量顯示
-        if (healthText != null)
-        {
-            healthText.text = "敵人血量: " + health + "/" + maxHealth;
-        }
+        GameManager.Instance.OnEnemyKilled(); // 通知 GameManager
     }
 }

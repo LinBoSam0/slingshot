@@ -10,6 +10,8 @@ public class ObstacleSpawner : MonoBehaviour
     public float spawnRangeYMin = 0; // 障礙物生成範圍的 Y 軸最小值
     public float spawnRangeYMax = 3f; // 障礙物生成範圍的 Y 軸最大值
 
+    private bool isSpawning = true;
+
     private void Start()
     {
         InvokeRepeating("SpawnObstacle", 0f, spawnInterval); // 設定定時器定期生成障礙物
@@ -27,5 +29,10 @@ public class ObstacleSpawner : MonoBehaviour
 
         // 在隨機位置生成障礙物
         Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);
+    }
+    public void StopSpawning()
+    {
+        CancelInvoke("SpawnObstacle");
+        Debug.Log("已取消障礙物生成");
     }
 }
