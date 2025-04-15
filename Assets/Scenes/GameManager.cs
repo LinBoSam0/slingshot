@@ -14,10 +14,14 @@ public class GameManager : MonoBehaviour
     public Text enemyHealthText; // 場景上的 UI Text
     public Transform spawnPoint; // 指定敵人出生位置（從 Inspector 拖進來）
 
+    public Text levelText; // 用來顯示關卡文字（例如「第一關」）
+
     void Start()
     {
-        SpawnEnemy(); // ← 新增這行
+        ShowLevelText("第一關"); // 顯示「第一關」
+        SpawnEnemy(); // ← 新增這行 
     }
+
     void Awake()
     {
         Instance = this;
@@ -57,6 +61,15 @@ public class GameManager : MonoBehaviour
             {
                 obstacleSpawner.StopSpawning();
             }
+        }
+    }
+
+    // 顯示關卡文字
+    private void ShowLevelText(string level)
+    {
+        if (levelText != null)
+        {
+            levelText.text = level;  // 顯示「第一關」
         }
     }
 }

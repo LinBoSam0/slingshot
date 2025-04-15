@@ -82,8 +82,6 @@ public class Slingshot : MonoBehaviour
             {
                 enemy.TakeDamage(1); // ¦© 1 ÂI¦å
             }
-
-          
         }
     }
 

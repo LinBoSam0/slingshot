@@ -10,7 +10,7 @@ public class ObstacleSpawner : MonoBehaviour
     public float spawnRangeYMin = 0; // 障礙物生成範圍的 Y 軸最小值
     public float spawnRangeYMax = 3f; // 障礙物生成範圍的 Y 軸最大值
 
-    private bool isSpawning = true;
+
 
     private void Start()
     {

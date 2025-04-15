@@ -18,9 +18,9 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         // 檢查投射物的 X 座標是否大於 20
-        if (transform.position.x > 20)
+        if (transform.position.x > 20 || transform.position.y < -20)
         {
-            // 如果 X 座標大於 8，將投射物傳送回原點
+            // 如果 X 座標大於 20 或 Y 座標小於 -20，將投射物傳送回原點
             transform.position = teleportPosition; // 立即回到原點
         }
 

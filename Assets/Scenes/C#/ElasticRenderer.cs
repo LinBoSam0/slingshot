@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using UnityEngine;
-
 public class ElasticRenderer : MonoBehaviour
 {
     public LineRenderer leftElastic;  // ¥ª°¼¾ó¥Öµ¬
