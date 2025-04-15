@@ -12,24 +12,39 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         // 初始化血量顯示
+        UpdateHealthText();
+
+        // 通知 GameManager 有新敵人生成
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.RegisterEnemy();
+        }
+    }
+
+    // 外部呼叫：給這個敵人設定 UI Text
+    public void SetHealthText(Text text)
+    {
+        healthText = text;
+        UpdateHealthText();
+    }
+
+    // 更新顯示用的文字
+    void UpdateHealthText()
+    {
         if (healthText != null)
         {
-            healthText.text = "敵人血量: " + health + "/" + maxHealth;
+            healthText.text = "敵人血量: " + Mathf.Max(health, 0) + "/" + maxHealth;
         }
-        // 通知 GameManager 有新敵人生成
-        GameManager.Instance.RegisterEnemy();
     }
+
     // 當敵人受到攻擊時，執行這個函式
     public void TakeDamage(int damage)
     {
-        health -= damage; // 扣血
-        Debug.Log("敵人受傷！剩餘血量：" + health);
+        health -= damage;
+        if (health < 0) health = 0;
 
-        // 更新血量顯示
-        if (healthText != null)
-        {
-            healthText.text = "HP: " + health + "/" + maxHealth; // 顯示血量
-        }
+        Debug.Log("敵人受傷！剩餘血量：" + health);
+        UpdateHealthText();
 
         if (health <= 0)
         {
@@ -42,6 +57,9 @@ public class Enemy : MonoBehaviour
         Debug.Log("敵人被消滅！");
         Destroy(gameObject);
 
-        GameManager.Instance.OnEnemyKilled(); // 通知 GameManager
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnEnemyKilled();
+        }
     }
 }
